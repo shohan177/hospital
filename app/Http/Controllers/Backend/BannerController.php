@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Model\Category;
-use Illuminate\Http\Request;
+use App\Model\Banner;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+    /*use App\Http\Controllers\Controller*/;
 
-class CategoryController extends Controller
+class BannerController extends Controller
 {
     private $path;
     private $model;
@@ -18,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $query  = Category::latest();
+        $query  = Banner::latest();
 
         if (!empty($request->field_name) && !empty($request->value)) {
             $query->where($request->field_name, 'like', '%' . $request->value . '%');
@@ -49,15 +50,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validation($request);
-
-        $category = [
-            'name' => $request->name,
-            'slug' => Str::slug($request->name)
-        ];
+        $data = $request->input('banner');
 
 
-        Category::create($category);
+        //Save photo
+        if (!empty($request->file('photo'))) {
+            $data['photo'] = Storage::putFile('upload/sites', $request->file('photo'));
+        }
+        //$this->validation($request);
+        Banner::create($data);
 
         return redirect()->route($this->route . '.index')
             ->with('success', $this->model . ' successfully created');
@@ -66,28 +67,28 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Category  $category
+     * @param  \App\Model\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Banner $banner)
     {
         $breadcumbs = $this->breadcumbs($this->model, 'show');
 
-        return view($this->path . '.show', compact("category", "breadcumbs"));
+        return view($this->path . '.show', compact("banner", "breadcumbs"));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Category  $category
+     * @param  \App\Model\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Banner $banner)
     {
         $breadcumbs = $this->breadcumbs($this->model, 'edit');
         return view(
             $this->path . '.edit',
-            compact("category", "breadcumbs")
+            compact("banner", "breadcumbs")
         );
     }
 
@@ -95,41 +96,48 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Category  $category
+     * @param  \App\Model\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Banner $banner)
     {
-        $this->validation($request, $category->id);
-        $category->update($request->all());
+        $data = $request->input('banner');
+
+        if (!empty($request->file('photo'))) {
+            $data['photo'] = Storage::putFile('upload/sites', $request->file('photo'));
+        } else {
+            $data['photo'] = $request->old_photo;
+        }
+
+        //$this->validation($request, $banner->id);
+        $banner->update($data);
         return redirect()->back()->with('success', $this->model . ' Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Category  $category
+     * @param  \App\Model\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Banner $banner)
     {
-        $category->delete();
+        $banner->delete();
         return redirect()->route($this->route . '.index')
             ->with('success', $this->model . ' deleted');
     }
 
     public function __construct()
     {
-        $this->path  = "admin.category";
-        $this->model = "Category";
-        $this->route = "category";
+        $this->path  = "admin.banner";
+        $this->model = "Banner";
+        $this->route = "banner";
     }
 
-
-    private function validation($request, $category = null)
+    private function validation($request, $banner = null)
     {
         $this->validate($request, [
-            'name'  => "required|unique:categories,name," . $category
+            'name'  => "required|unique:banners,name," . $banner
         ]);
     }
 }

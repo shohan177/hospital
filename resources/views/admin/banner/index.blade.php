@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('title', 'List Collection')
+@section('title', 'List Slider')
 
 @push('page-css')
     <link rel="stylesheet" href="{{asset('admin_assets/lte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" />
@@ -14,13 +14,16 @@
             <div class="box box-success">
 
                 <div class="box-header with-border">
+                    <div class="box-header pull-left">
+                        <span class="box-title">Banner list</span>
+                    </div>
 
                 	<div class="box-header pull-left">
 	                    <!-- <span class="box-title">All Roles</span> -->
 	                </div>
 
 	                <div class="box-tools pull-right">
-	                    <a href="{{route('collection.create')}}" class="btn btn-xs btn-success pull-left text-white" title="Add New"><i class="fa fa-plus"></i> <span class="text-capitalize">Add Category</span></a>
+	                    <a href="{{route('banner.create')}}" class="btn btn-xs btn-success pull-left text-white" title="Add New"><i class="fa fa-plus"></i> <span class="text-capitalize">Banner Slider</span></a>
 	                </div>
 	            </div>
 
@@ -31,27 +34,35 @@
                         <thead class="bg-purple text-white">
                             <tr>
                                 <th class="serial">#</th>
+                                <th>Photo</th>
+                                <th>Position</th>
                                 <th>Name</th>
+                                <th>Title</th>
+                                <th>Time</th>
                                 <th class="action">Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             @php $count = 0 @endphp
-                        	@foreach($datas as $collection)
+                        	@foreach($datas as $banner)
 
                             <tr>
                                 <td>{{ $loop -> index+1 }}</td>
-                                <td>{{$collection->name}}</td>
+                                <td><img style="height: 50px; width:50px;" src="{{ asset('storage/'.$banner->photo) }}" alt=""></td>
+                                <td>{{$banner->positaion}}</td>
+                                <td>{{$banner->name}}</td>
+                                <td>{!! Str::limit($banner->title,50) !!}</td>
+                                <td>{{($banner->updated_at)->diffForHumans()}}</td>
 
 
                                 <td>
 
-                                	<a href="{{route('collection.show', $collection->id)}}" class="btn btn-xs btn-success action-view" title="View"><i class="fa fa-eye"></i></a>
+                                	<a href="{{route('banner.show', $banner->id)}}" class="btn btn-xs btn-success action-view" title="View"><i class="fa fa-eye"></i></a>
 
-                                	<a href="{{route('collection.edit', $collection->id)}}" class="btn btn-xs btn-primary action-pencil" title="Edit"><i class="fa fa-pencil"></i></a>
+                                	<a href="{{route('banner.edit', $banner->id)}}" class="btn btn-xs btn-primary action-pencil" title="Edit"><i class="fa fa-pencil"></i></a>
 
-                                	<form action="{{route('collection.destroy', $collection->id)}}" method="POST">
+                                	<form action="{{route('banner.destroy', $banner->id)}}" method="POST">
 									    @csrf
 									    @method('DELETE')
 									    <button class="btn btn-xs btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete this item?');">

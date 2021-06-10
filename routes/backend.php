@@ -37,6 +37,8 @@ Route::prefix('/admin')->group(function () {
             Route::resource('services',        'ServiceController');
             // ------------------department------------------
             Route::resource('slider',        'SliderController');
+            // ------------------department------------------
+            Route::resource('banner',        'BannerController');
         });
 
         //------------------------------- Admin Crud -------------------------------
