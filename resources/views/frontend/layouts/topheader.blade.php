@@ -52,7 +52,7 @@
 
 
                     {{-- home --}}
-                    <li aria-haspopup="true"><a href="index.php">Home</a>
+                    <li aria-haspopup="true"><a href="{{ route('mainHome') }}">Home</a>
                     </li>
 
 

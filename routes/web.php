@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'frontendController@index');
+Route::get('/', 'frontendController@index')->name('mainHome');
 Route::get('/about', 'frontendController@about')->name('about');
 Route::get('/department/{id}', 'frontendController@singleDepartment')->name('department');
 

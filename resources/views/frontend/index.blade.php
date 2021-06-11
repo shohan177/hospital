@@ -26,7 +26,7 @@
                                              <div class="caption-txt">
 
                                               <!-- Title -->
-                                                <h2 class="steelblue-color"><span>{{ $slider->line_one }}</span>{{ $slider->line_two }}</h2>
+                                                <h2 class="steelblue-color"><span>{{ $slider->line_one }}</span><br>{{ $slider->line_two }}</h2>
 
                                                 <!-- CONTENT BOX #1 -->
                                               <div class="box-list">
