@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'frontendController@index');
+Route::get('/about', 'frontendController@about')->name('about');
+Route::get('/department/{id}', 'frontendController@singleDepartment')->name('department');
 
 Auth::routes();
 
