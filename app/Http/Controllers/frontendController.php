@@ -27,9 +27,25 @@ class frontendController extends Controller
     /**
      * single department
      */
-    public function singleDepartment($id)
+    public function singleDepartment($slug)
     {
-        $department = Department::find($id);
+        $department = Department::where('slug', $slug)->first();
         return view('frontend.deparment', compact('department'));
+    }
+
+    /**
+     * service single
+     */
+    public function singleService($slug)
+    {
+        $service = Service::where('slug', $slug)->first();
+        return view('frontend.service', compact('service'));
+    }
+    /**
+     * view all doctors
+     */
+    public function allDoctors()
+    {
+        return view('frontend.doctors');
     }
 }

@@ -73,7 +73,7 @@
                            <ul class="sub-menu">
                                @foreach ($allDepartment as $item)
 
-                               <li aria-haspopup="true"><a href="{{ route('department',$item ->id)}}">{{ $item -> name }}</a></li>
+                               <li aria-haspopup="true"><a href="{{ route('department',$item ->slug)}}">{{ $item -> name }}</a></li>
                                @endforeach
                            </ul>
                     </li>
@@ -82,7 +82,7 @@
                            <ul class="sub-menu">
                                @foreach ($allService as $item)
 
-                               <li aria-haspopup="true"><a href="demo-1.html">{{ $item -> name }}</a></li>
+                               <li aria-haspopup="true"><a href="{{ route('service',$item ->slug) }}">{{ $item -> name }}</a></li>
                                @endforeach
                            </ul>
                     </li>
@@ -90,7 +90,7 @@
 
 
                     <!-- SIMPLE NAVIGATION LINK -->
-                    <li class="nl-simple" aria-haspopup="true"><a href="#">Consultants</a></li>
+                    <li class="nl-simple" aria-haspopup="true"><a href="{{ route('doctors') }}">Consultants</a></li>
 
                     <!-- NAVIGATION MENU BUTTON -->
                     <li class="nl-simple header-btn" aria-haspopup="true"><a href="appointment.html">Make an Appointment</a></li>

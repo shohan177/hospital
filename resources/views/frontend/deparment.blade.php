@@ -11,8 +11,8 @@
 								<!-- Breadcrumb Nav -->
 								<nav aria-label="breadcrumb">
 								  	<ol class="breadcrumb">
-								    	<li class="breadcrumb-item"><a href="demo-1.html">Home</a></li>
-								    	<li class="breadcrumb-item"><a href="departments.html">Department</a></li>
+								    	<li class="breadcrumb-item"><a href="{{ route('mainHome') }}">Home</a></li>
+								    	<li class="breadcrumb-item active" aria-current="page">Department</li>
 								  	</ol>
 								</nav>
 

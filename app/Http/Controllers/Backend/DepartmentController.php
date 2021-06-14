@@ -6,6 +6,7 @@ use App\Model\Department;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
     /*use App\Http\Controllers\Controller*/;
 
 class DepartmentController extends Controller
@@ -56,6 +57,10 @@ class DepartmentController extends Controller
         if (!empty($request->file('photo'))) {
             $data['photo'] = Storage::putFile('upload/sites', $request->file('photo'));
         }
+
+        $data['slug'] = Str::slug($request->department['name']);
+
+
 
         // $this->validation($request);
         Department::create($data);
@@ -108,6 +113,9 @@ class DepartmentController extends Controller
         } else {
             $data['photo'] = $request->old_photo;
         }
+
+        $data['slug'] = Str::slug($request->department['name']);
+
         //$this->validation($request, $department->id);
         $department->update($data);
         return redirect()->back()->with('success', $this->model . ' Updated Successfully');

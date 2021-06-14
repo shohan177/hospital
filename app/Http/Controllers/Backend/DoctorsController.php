@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Model\Service;
+use App\Model\Doctors;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
     /*use App\Http\Controllers\Controller*/;
 
-class ServiceController extends Controller
+class DoctorsController extends Controller
 {
     private $path;
     private $model;
@@ -20,7 +20,7 @@ class ServiceController extends Controller
      */
     public function index(Request $request)
     {
-        $query  = Service::latest();
+        $query  = Doctors::latest();
 
         if (!empty($request->field_name) && !empty($request->value)) {
             $query->where($request->field_name, 'like', '%' . $request->value . '%');
@@ -51,17 +51,8 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->input('service');
-
-        //Save photo
-        if (!empty($request->file('photo'))) {
-            $data['photo'] = Storage::putFile('upload/sites', $request->file('photo'));
-        }
-
-        $data['slug'] = Str::slug($request->service['name']);
-
-        // $this->validation($request);
-        Service::create($data);
+        $this->validation($request);
+        Doctors::create($request->all());
 
         return redirect()->route($this->route . '.index')
             ->with('success', $this->model . ' successfully created');
@@ -70,28 +61,28 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Service  $service
+     * @param  \App\Model\Doctors  $doctors
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show(Doctors $doctors)
     {
         $breadcumbs = $this->breadcumbs($this->model, 'show');
 
-        return view($this->path . '.show', compact("service", "breadcumbs"));
+        return view($this->path . '.show', compact("doctors", "breadcumbs"));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Service  $service
+     * @param  \App\Model\Doctors  $doctors
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Doctors $doctors)
     {
         $breadcumbs = $this->breadcumbs($this->model, 'edit');
         return view(
             $this->path . '.edit',
-            compact("service", "breadcumbs")
+            compact("doctors", "breadcumbs")
         );
     }
 
@@ -99,50 +90,40 @@ class ServiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Service  $service
+     * @param  \App\Model\Doctors  $doctors
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, Doctors $doctors)
     {
-        $data = $request->input('service');
-
-        if (!empty($request->file('photo'))) {
-            $data['photo'] = Storage::putFile('upload/sites', $request->file('photo'));
-        } else {
-            $data['photo'] = $request->old_photo;
-        }
-
-        $data['slug'] = Str::slug($request->service['name']);
-
-        //$this->validation($request, $service->id);
-        $service->update($data);
+        $this->validation($request, $doctors->id);
+        $doctors->update($request->all());
         return redirect()->back()->with('success', $this->model . ' Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Service  $service
+     * @param  \App\Model\Doctors  $doctors
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Doctors $doctors)
     {
-        $service->delete();
+        $doctors->delete();
         return redirect()->route($this->route . '.index')
             ->with('success', $this->model . ' deleted');
     }
 
     public function __construct()
     {
-        $this->path  = "admin.services";
-        $this->model = "Service";
-        $this->route = "services";
+        $this->path  = "admin.doctors";
+        $this->model = "Doctors";
+        $this->route = "doctors";
     }
 
-    private function validation($request, $service = null)
+    private function validation($request, $doctors = null)
     {
         $this->validate($request, [
-            'name'  => "required|unique:services,name," . $service
+            'name'  => "required|unique:doctorss,name," . $doctors
         ]);
     }
 }

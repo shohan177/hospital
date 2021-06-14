@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'frontendController@index')->name('mainHome');
 Route::get('/about', 'frontendController@about')->name('about');
-Route::get('/department/{id}', 'frontendController@singleDepartment')->name('department');
+Route::get('/department/{slug}', 'frontendController@singleDepartment')->name('department');
+Route::get('/service/{slug}', 'frontendController@singleService')->name('service');
+Route::get('/doctors', 'frontendController@allDoctors')->name('doctors');
 
 Auth::routes();
 
