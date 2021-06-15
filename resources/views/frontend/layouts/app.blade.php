@@ -13,7 +13,7 @@
 
 		<!-- STYLE SWITCHER
 		============================================= -->
-		@include('frontend.layouts.site_swithcher')
+		<!-- @include('frontend.layouts.site_swithcher') -->
         <!-- END SWITCHER -->
 
 		<!-- PAGE CONTENT

@@ -35,34 +35,43 @@
                             <tr>
                                 <th class="serial">#</th>
                                 <th>Photo</th>
-                                <th>Position</th>
+                                <th>Post</th>
+                                <th>Department</th>
                                 <th>Name</th>
-                                <th>Title</th>
-                                <th>Time</th>
+                                <th>Starting Time</th>
+                                <th>Working Days</th>
                                 <th class="action">Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             @php $count = 0 @endphp
-                        	@foreach($datas as $banner)
+                        	@foreach($datas as $doctor)
 
                             <tr>
                                 <td>{{ $loop -> index+1 }}</td>
-                                <td><img style="height: 50px; width:50px;" src="{{ asset('storage/'.$banner->photo) }}" alt=""></td>
-                                <td>{{$banner->positaion}}</td>
-                                <td>{{$banner->name}}</td>
-                                <td>{!! Str::limit($banner->title,50) !!}</td>
-                                <td>{{($banner->updated_at)->diffForHumans()}}</td>
-
+                                <td><img style="height: 50px; width:50px;" src="{{ asset('storage/'.$doctor->photo) }}" alt=""></td>
+                                <td>{{$doctor->designation}}</td>
+                                <td>{{$doctor->department->name}}</td>
+                                <td>{{$doctor->name}}</td>
+                                <td>{{$doctor->time }}</td>
+                                @php
+                                    $days = json_decode($doctor ->working_days);
+                                @endphp
+                                <td>
+                                    @foreach ($days  as $item)
+                                        
+                                    {{ $item }} |
+                                    @endforeach
+                                </td>
 
                                 <td>
 
-                                	<a href="{{route('banner.show', $banner->id)}}" class="btn btn-xs btn-success action-view" title="View"><i class="fa fa-eye"></i></a>
+                                	<a href="{{route('doctors.show', $doctor->id)}}" class="btn btn-xs btn-success action-view" title="View"><i class="fa fa-eye"></i></a>
 
-                                	<a href="{{route('banner.edit', $banner->id)}}" class="btn btn-xs btn-primary action-pencil" title="Edit"><i class="fa fa-pencil"></i></a>
+                                	<a href="{{route('doctors.edit', $doctor->id)}}" class="btn btn-xs btn-primary action-pencil" title="Edit"><i class="fa fa-pencil"></i></a>
 
-                                	<form action="{{route('banner.destroy', $banner->id)}}" method="POST">
+                                	<form action="{{route('doctors.destroy', $doctor->id)}}" method="POST">
 									    @csrf
 									    @method('DELETE')
 									    <button class="btn btn-xs btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete this item?');">

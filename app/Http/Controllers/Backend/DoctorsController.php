@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Model\Doctors;
+use App\Model\Department;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -39,8 +40,10 @@ class DoctorsController extends Controller
      */
     public function create()
     {
+        $department = Department::latest() -> get();
+        
         $breadcumbs = $this->breadcumbs($this->model, 'create');
-        return view($this->path . '.create', compact('breadcumbs'));
+        return view($this->path . '.create', compact('breadcumbs','department'));
     }
 
     /**
@@ -50,9 +53,24 @@ class DoctorsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validation($request);
-        Doctors::create($request->all());
+    {   /**
+        *get days
+        */
+        $days = $request -> working;
+        
+        $data = $request->input('dr');
+        $data['working_days'] = json_encode($days);
+
+        /**
+         * photo uplode
+         */
+        if (!empty($request->file('photo'))) {
+            $data['photo'] = Storage::putFile('upload/dr', $request->file('photo'));
+        }
+
+
+        //$this->validation($request);
+        Doctors::create($data);
 
         return redirect()->route($this->route . '.index')
             ->with('success', $this->model . ' successfully created');
