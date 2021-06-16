@@ -67,8 +67,11 @@ class frontendController extends Controller
      * 
      */
     public function storeSerial(Request $request){
+
+       
         
         $data = $request->input('appoinment');
+        dd($data);
 
         Serial::create($data);
     }
