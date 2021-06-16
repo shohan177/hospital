@@ -40,10 +40,10 @@ class DoctorsController extends Controller
      */
     public function create()
     {
-        $department = Department::latest() -> get();
-        
+        $department = Department::latest()->get();
+
         $breadcumbs = $this->breadcumbs($this->model, 'create');
-        return view($this->path . '.create', compact('breadcumbs','department'));
+        return view($this->path . '.create', compact('breadcumbs', 'department'));
     }
 
     /**
@@ -53,13 +53,14 @@ class DoctorsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   /**
-        *get days
-        */
-        $days = $request -> working;
-        
+    {
+        /**
+         *get days
+         */
+        $selecteddays = $request->working;
         $data = $request->input('dr');
-        $data['working_days'] = json_encode($days);
+        $data['working_days'] = json_encode($selecteddays);
+
 
         /**
          * photo uplode

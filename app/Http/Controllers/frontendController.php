@@ -52,27 +52,23 @@ class frontendController extends Controller
     /**
      * make appoinment
      */
-    public function makeAppoinment(){
-        $department = Department::get() -> all();
-        return view('frontend.chosedepartment',compact('department'));
+    public function makeAppoinment()
+    {
+        $department = Department::get()->all();
+        return view('frontend.chosedepartment', compact('department'));
     }
     /**
-     * appoinment form 
+     * appoinment form
      */
-    public function appoinmentForm(){
-        
-        return view('frontend.takeappoinment');
-    }
-    /**
-     * 
-     */
-    public function storeSerial(Request $request){
+    public function appoinmentForm($slug)
+    {
+        $department = Department::where('slug', $slug)->first();
 
-       
-        
-        $data = $request->input('appoinment');
-        dd($data);
+        $doctors = $department->doctors;
 
-        Serial::create($data);
+
+
+
+        return view('frontend.takeappoinment', compact('doctors'));
     }
 }

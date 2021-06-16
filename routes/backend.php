@@ -42,9 +42,7 @@ Route::prefix('/admin')->group(function () {
             // ------------------doctors------------------
             Route::resource('doctors',        'DoctorsController');
             // ------------------doctors------------------
-            Route::resource('appoinment',        'TakeAppoinmentController');
-
-            
+            Route::resource('appointment',        'TakeAppoinmentController');
         });
 
         //------------------------------- Admin Crud -------------------------------

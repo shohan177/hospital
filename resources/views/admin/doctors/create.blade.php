@@ -41,7 +41,7 @@
                             <div class="col-3">
 
                             </div>
-                   
+
                             <div class="form-group">
                                 <label>Name</label>
                                 <input type="text" name="dr[name]" placeholder="name" class="form-control" />
@@ -73,28 +73,28 @@
                                 <label>Designation</label>
                                 <input type="text" name="dr[designation]" placeholder="Designation" class="form-control" />
                             </div>
-                        
+
 
 
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Working Day</label><br><br>
-                                <input type="checkbox" id="vehicle1" name="working[]" value="SUN">
+                                <input type="checkbox" id="vehicle1" name="working[]" value="0">
                                 <label for="vehicle1"> SUN </label>
-                                <input type="checkbox" id="vehicle2" name="working[]" value="MON">
+                                <input type="checkbox" id="vehicle2" name="working[]" value="1">
                                 <label for="vehicle2"> MON </label>
-                                <input type="checkbox" id="vehicle3" name="working[]" value="TUE">
+                                <input type="checkbox" id="vehicle3" name="working[]" value="2">
                                 <label for="vehicle3"> TUE </label>
-                                <input type="checkbox" id="vehicle1" name="working[]" value="WED">
+                                <input type="checkbox" id="vehicle1" name="working[]" value="3">
                                 <label for="vehicle4"> WED </label>
-                                <input type="checkbox" id="vehicle4" name="working[]" value="THU">
+                                <input type="checkbox" id="vehicle4" name="working[]" value="4">
                                 <label for="vehicle5"> THU </label>
-                                <input type="checkbox" id="vehicle5" name="working[]" value="FRI">
+                                <input type="checkbox" id="vehicle5" name="working[]" value="5">
                                 <label for="vehicle6"> FRI </label>
-                                <input type="checkbox" id="vehicle6" name="working[]" value="SAT">
+                                <input type="checkbox" id="vehicle6" name="working[]" value="6">
                                 <label for="vehicle7"> SAT </label>
-                                                               
+
                             </div>
                             <div class="form-group">
                                 <label for="appt">Select a time:</label>
@@ -104,7 +104,7 @@
                                 <label>Phone</label>
                                 <input type="text" name="dr[phone]" placeholder="+8801878745684" class="form-control" />
                             </div>
-                        
+
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea id="ck-editor" name="dr[description]" class="form-control"></textarea>
@@ -123,7 +123,7 @@
                     </form>
 
                 </div>
-          
+
             </div>
             <!-- /.row -->
         </div>

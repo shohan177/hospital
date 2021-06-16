@@ -19,14 +19,14 @@ class TakeAppoinmentController extends Controller
     {
         $query  = TakeAppoinment::latest();
 
-        if(!empty($request->field_name) && !empty($request->value)){
-            $query->where($request->field_name,'like','%'.$request->value.'%');
+        if (!empty($request->field_name) && !empty($request->value)) {
+            $query->where($request->field_name, 'like', '%' . $request->value . '%');
         }
 
         $breadcumbs = $this->breadcumbs($this->model, 'index');
         $datas      = $query->paginate(10);
 
-        return view( $this->path .'.index', compact('datas', 'breadcumbs'));
+        return view($this->path . '.index', compact('datas', 'breadcumbs'));
     }
 
     /**
@@ -37,7 +37,7 @@ class TakeAppoinmentController extends Controller
     public function create()
     {
         $breadcumbs = $this->breadcumbs($this->model, 'create');
-        return view( $this->path . '.create', compact('breadcumbs'));
+        return view($this->path . '.create', compact('breadcumbs'));
     }
 
     /**
@@ -49,12 +49,30 @@ class TakeAppoinmentController extends Controller
     public function store(Request $request)
     {
         $data = $request->input('appoinment');
+
+        // dd($data);
+        // $table->string('name');
+        // $table->string('phone');
+        // $table->string('adress');
+        // $table->string('date');
+        // $table->string('type');
+        // $table->string('eamil');
+        // $table->string('note');
         //dd($data);
         //$this->validation($request);
-        TakeAppoinment::create($data);
+        TakeAppoinment::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'adress' => $request->adress,
+            'date' => $request->date,
+            'type' => 'hello',
+            'eamil' => $request->eamil,
+            'note' => $request->note
+        ]);
 
-        return redirect()->route( $this->route . '.index')
-                ->with('success', $this->model . ' successfully created');
+        return redirect()->back();
+        // return redirect()->route($this->route . '.index')
+        //     ->with('success', $this->model . ' successfully created');
     }
 
     /**
@@ -67,7 +85,7 @@ class TakeAppoinmentController extends Controller
     {
         $breadcumbs = $this->breadcumbs($this->model, 'show');
 
-        return view($this->path .'.show', compact( "takeAppoinment", "breadcumbs"));
+        return view($this->path . '.show', compact("takeAppoinment", "breadcumbs"));
     }
 
     /**
@@ -79,8 +97,10 @@ class TakeAppoinmentController extends Controller
     public function edit(TakeAppoinment $takeAppoinment)
     {
         $breadcumbs = $this->breadcumbs($this->model, 'edit');
-        return view( $this->path . '.edit', 
-                compact( "takeAppoinment" , "breadcumbs"));
+        return view(
+            $this->path . '.edit',
+            compact("takeAppoinment", "breadcumbs")
+        );
     }
 
     /**
@@ -94,7 +114,7 @@ class TakeAppoinmentController extends Controller
     {
         $this->validation($request, $takeAppoinment->id);
         $takeAppoinment->update($request->all());
-        return redirect()->back()->with('success', $this->model. ' Updated Successfully');
+        return redirect()->back()->with('success', $this->model . ' Updated Successfully');
     }
 
     /**
@@ -106,19 +126,20 @@ class TakeAppoinmentController extends Controller
     public function destroy(TakeAppoinment $takeAppoinment)
     {
         $takeAppoinment->delete();
-        return redirect()->route( $this->route . '.index')
-                ->with('success', $this->model .' deleted');
+        return redirect()->route($this->route . '.index')
+            ->with('success', $this->model . ' deleted');
     }
 
     public function __construct()
     {
-        $this->path  = "admin.";
+        $this->path  = "admin.appoinment";
         $this->model = "TakeAppoinment";
         $this->route = "TakeAppoinment";
     }
 
-    private function validation($request, $takeAppoinment = null){
-        $this->validate($request,[
+    private function validation($request, $takeAppoinment = null)
+    {
+        $this->validate($request, [
             'name'  => "required|unique:takeAppoinments,name," . $takeAppoinment
         ]);
     }

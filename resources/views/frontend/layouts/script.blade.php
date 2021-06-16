@@ -47,3 +47,38 @@
 
 		<script src="{{ asset('frontend_assets/js/changer.js') }}"></script>
 		<script defer src="{{ asset('frontend_assets/js/styleswitch.js') }}"></script>
+
+        {{-- datepicker --}}
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+
+        const disabledDays = ["0","5", "6"]
+        .map((n) => parseInt(n))
+        .filter((n) => !isNaN(n));
+
+        $( function() {
+            $( "#datepicker" ).datepicker({
+                // minDate: 1,
+                // maxDate: +2,
+
+                beforeShowDay: function(day) {
+                    return [disabledDays.includes(day.getDay())];
+                }
+            });
+        } );
+
+
+        function getSelectValue()
+        {
+            var selectedValue = document.getElementById("Drselection").value;
+            alert(selectedValue);
+        }
+
+        $( document ).ready(function() {
+            $('#Drselection').chanage(function(){
+                getSelectValue()
+            })
+        });
+
+        </script>
