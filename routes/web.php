@@ -18,6 +18,10 @@ Route::get('/about', 'frontendController@about')->name('about');
 Route::get('/department/{slug}', 'frontendController@singleDepartment')->name('department');
 Route::get('/service/{slug}', 'frontendController@singleService')->name('service');
 Route::get('/doctors', 'frontendController@allDoctors')->name('doctors');
+Route::get('/chosedepartment', 'frontendController@makeAppoinment')->name('appoinment');
+Route::get('/appoinmentform', 'frontendController@appoinmentForm')->name('appoinmentForm');
+Route::post('storeAppoinment', 'frontendController@storeSerial')->name('StoreAppoinment');
+
 
 Auth::routes();
 

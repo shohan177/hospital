@@ -41,6 +41,10 @@ Route::prefix('/admin')->group(function () {
             Route::resource('banner',        'BannerController');
             // ------------------doctors------------------
             Route::resource('doctors',        'DoctorsController');
+            // ------------------doctors------------------
+            Route::resource('appoinment',        'TakeAppoinmentController');
+
+            
         });
 
         //------------------------------- Admin Crud -------------------------------

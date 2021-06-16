@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Model\Department;
+use App\Model\Serial;
 use App\Model\Service;
 use App\Model\Slider;
 use Illuminate\Http\Request;
@@ -47,5 +48,28 @@ class frontendController extends Controller
     public function allDoctors()
     {
         return view('frontend.doctors');
+    }
+    /**
+     * make appoinment
+     */
+    public function makeAppoinment(){
+        $department = Department::get() -> all();
+        return view('frontend.chosedepartment',compact('department'));
+    }
+    /**
+     * appoinment form 
+     */
+    public function appoinmentForm(){
+        
+        return view('frontend.takeappoinment');
+    }
+    /**
+     * 
+     */
+    public function storeSerial(Request $request){
+        
+        $data = $request->input('appoinment');
+
+        Serial::create($data);
     }
 }
