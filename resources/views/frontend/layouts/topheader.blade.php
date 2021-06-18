@@ -57,8 +57,8 @@
 
 
 
-                    <li aria-haspopup="true"><a href="#">About <span class="wsarrow"></span></a>
-                        <ul class="sub-menu">
+                    <li aria-haspopup="true"><a href="{{ route('about') }}">About</a>
+                        {{-- <ul class="sub-menu">
                             <li aria-haspopup="true"><a href="{{ route('about') }}">About Us</a></li>
                             <li aria-haspopup="true"><a href="demo-1.html">Mission, Vision, Values</a></li>
                             <li aria-haspopup="true"><a href="demo-1.html">Founder</a></li>
@@ -66,7 +66,7 @@
                             <li aria-haspopup="true"><a href="demo-1.html">Management</a></li>
                             <li aria-haspopup="true"><a href="demo-1.html">Corporate Services</a></li>
                             <li aria-haspopup="true"><a href="demo-1.html">Contact</a></li>
-                        </ul>
+                        </ul> --}}
                     </li>
                     {{-- all department  --}}
                     <li aria-haspopup="true"><a href="#">Departments <span class="wsarrow"></span></a>
@@ -93,7 +93,7 @@
                     <li class="nl-simple" aria-haspopup="true"><a href="{{ route('doctors') }}">Consultants</a></li>
 
                     <!-- NAVIGATION MENU BUTTON -->
-                    <li class="nl-simple header-btn" aria-haspopup="true"><a href="{{ route('appoinment')}}">Make an Appointment</a></li>
+                    <li class="nl-simple header-btn" aria-haspopup="true"><a href="{{ route('appoinmentForm')}}">Make an Appointment</a></li>
 
                 </ul>
             </nav>	<!-- END MAIN MENU -->

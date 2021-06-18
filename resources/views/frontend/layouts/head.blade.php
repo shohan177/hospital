@@ -29,6 +29,8 @@
     <link href="../../../../../use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" rel="stylesheet" crossorigin="anonymous">
     <link href="frontend_assets/css/flaticon.css" rel="stylesheet">
 
+    {{-- Datepiker --}}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- PLUGINS STYLESHEET -->
     <link href="{{ asset('frontend_assets/css/menu.css') }}" rel="stylesheet">
     <link id="effect" href="{{ asset('frontend_assets/css/dropdown-effects/fade-down.css') }}" media="all" rel="stylesheet">
@@ -43,7 +45,5 @@
 
     <!-- RESPONSIVE CSS -->
     <link href="{{ asset('frontend_assets/css/responsive.css') }}" rel="stylesheet">
-    {{-- Datepiker --}}
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 </head>

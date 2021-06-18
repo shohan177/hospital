@@ -17,6 +17,7 @@ class CreateSerialsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
+            $table->string('drName');
             $table->string('adress');
             $table->string('date');
             $table->string('type');

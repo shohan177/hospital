@@ -60,7 +60,7 @@
                                 @endphp
                                 <td>
                                     @foreach ($days  as $item)
-                                        
+
                                     {{ $item }} |
                                     @endforeach
                                 </td>
@@ -70,14 +70,15 @@
                                 	<a href="{{route('doctors.show', $doctor->id)}}" class="btn btn-xs btn-success action-view" title="View"><i class="fa fa-eye"></i></a>
 
                                 	<a href="{{route('doctors.edit', $doctor->id)}}" class="btn btn-xs btn-primary action-pencil" title="Edit"><i class="fa fa-pencil"></i></a>
+                                	<a href="{{route('deleteDr', $doctor->id)}}" class="btn btn-xs btn-danger" title="Edit"><i class="fa fa-pencil"></i></a>
 
-                                	<form action="{{route('doctors.destroy', $doctor->id)}}" method="POST">
+                                	{{-- <form action="{{route('doctors.destroy', $doctor->id)}}" method="POST">
 									    @csrf
 									    @method('DELETE')
 									    <button class="btn btn-xs btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete this item?');">
 									    	<i class="fa fa-trash"></i>
 									    </button>
-									</form>
+									</form> --}}
                                 </td>
                             </tr>
 

@@ -29,7 +29,7 @@
                                 <span class="flaticon-137-doctor"></span>
 
                                 <!-- Text -->
-                                <h5 class="statistic-number"><span class="count-element">12</span></h5>
+                                <h5 class="statistic-number"><span class="count-element">{{ count($doctors) }}</span></h5>
                                 <p class="txt-400">Qualified Doctors</p>
 
                             </div>
@@ -47,6 +47,7 @@
 				<div class="container">
 					<div class="row">
 
+                        @foreach ($doctors as $dr)
 
 						<!-- DOCTOR #1 -->
 						<div class="col-md-6 col-lg-4">
@@ -54,214 +55,28 @@
 
 								<!-- Doctor Photo -->
 								<div class="hover-overlay">
-									<img class="img-fluid" src="images/doctor-1.jpg" alt="doctor-foto">
+									<img style="height: 300px" class="img-fluid" src="{{ asset('storage/'.$dr->photo) }}" alt="doctor-foto">
 								</div>
 
 								<!-- Doctor Meta -->
 								<div class="doctor-meta">
 
-									<h5 class="h5-xs blue-color">Jonathan Barnes D.M.</h5>
-									<span>Chief Medical Officer</span>
+									<h5 class="h5-xs blue-color">{{ $dr->name }}</h5>
+									<span>{{ $dr->designation }} <p class="text-secondary">{{ $dr->department->name }}</p></span>
 
 									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>
+									<a class="btn btn-sm btn-blue blue-hover mt-15" href="{{ route('drProfile',$dr->id) }}" title="">View More Info</a>
 
 								</div>
 
 							</div>
-						</div>	<!-- END DOCTOR #1 -->
+						</div>
+                        <!-- END DOCTOR #1 -->
 
+                        @endforeach
 
-						<!-- DOCTOR #2 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">
 
-								<!-- Doctor Photo -->
-								<div class="hover-overlay">
-									<img class="img-fluid" src="images/doctor-2.jpg" alt="doctor-foto">
-								</div>
 
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Hannah Harper D.M.</h5>
-									<span>Anesthesiologist</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-2.html" title="">View More Info</a>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #2 -->
-
-
-						<!-- DOCTOR #3 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay">
-									<img class="img-fluid" src="images/doctor-3.jpg" alt="doctor-foto">
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Matthew Anderson D.M.</h5>
-									<span>Cardiology</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #3 -->
-
-
-						<!-- DOCTOR #4 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay">
-									<img class="img-fluid" src="images/doctor-4.jpg" alt="doctor-foto">
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Megan Coleman D.M.</h5>
-									<span>Neurosurgeon</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-2.html" title="">View More Info</a>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #4 -->
-
-
-						<!-- DOCTOR #5 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay">
-									<img class="img-fluid" src="images/doctor-5.jpg" alt="doctor-foto">
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Robert Peterson D.M.</h5>
-									<span>Allergist</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #5 -->
-
-
-						<!-- DOCTOR #6 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay">
-									<img class="img-fluid" src="images/doctor-6.jpg" alt="doctor-foto">
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Joshua Elledge D.M.</h5>
-									<span>Orthopaedics</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-2.html" title="">View More Info</a>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #6 -->
-
-
-						<!-- DOCTOR #7 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay">
-									<img class="img-fluid" src="images/doctor-3.jpg" alt="doctor-foto">
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Matthew Anderson D.M.</h5>
-									<span>Cardiology</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #7 -->
-
-
-						<!-- DOCTOR #8 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay">
-									<img class="img-fluid" src="images/doctor-1.jpg" alt="doctor-foto">
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Jonathan Barnes D.M.</h5>
-									<span>Chief Medical Officer</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-2.html" title="">View More Info</a>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #8 -->
-
-
-						<!-- DOCTOR #9 -->
-						<div class="col-md-6 col-lg-4">
-							<div class="doctor-2">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay">
-									<img class="img-fluid" src="images/doctor-2.jpg" alt="doctor-foto">
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-xs blue-color">Hannah Harper D.M.</h5>
-									<span>Anesthesiologist</span>
-
-									<!-- Button -->
-									<a class="btn btn-sm btn-blue blue-hover mt-15" href="doctor-1.html" title="">View More Info</a>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #9 -->
 
 
 					</div>	    <!-- End row -->

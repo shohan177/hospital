@@ -17,35 +17,48 @@
 
 								<!-- APPOINTMENT FORM -->
 
-								<form method="POST" action="{{ route('appointment.store')}}">
+								<form method="POST" action="{{ route('StoreAppoinment')}}">
 									@csrf
-									<div class="form-group mt-3">
+                                    <div class="form-group mt-3">
 										<label for="exampleInputEmail1">Select Dr <span class="text-danger">*</span></label>
-										<select onchange="getSelectValue()" id="Drselection" name="appoinment['drname']" class="custom-select doctor" required>
-											<option>Select Doctor *</option>
-											@foreach ($doctors as $valu)
+										<select onchange="getSelectValue()" id="departmentselection" name="department" class="custom-select doctor" required>
+											<option>Select Departmnet ---</option>
+                                            @foreach ($department as $item)
 
-											<option value="{{ $valu ->name }}">{{ $valu ->name }} ________ {{$valu ->time}}</option>
-											@endforeach
+											    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
+
+
 
 										</select>
 									</div>
+
+									<div class="form-group mt-3">
+										<label for="exampleInputEmail1">Select Dr <span class="text-danger">*</span></label>
+										<select onchange="getDrSelectValue()" id="Drselection" name="" class="custom-select doctor" required disabled>
+                                            <option value="">Select Your Doctor</option>
+
+										</select>
+									</div>
+                                    <div id=''>
+                                        <input id="drvalu" type="hidden" name="drName">
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label for="exampleInputEmail1">Date <span class="text-danger">*</span></label>
+                                        <input id="datepicker" type="text" name="date" class="form-control name" placeholder="Select Date" required disabled>
+
+
+                                      </div>
+
 									<div class="form-group mt-3">
 									  <label for="exampleInputEmail1">Patient Type <span class="text-danger">*</span></label>
-									  <select id="inlineFormCustomSelect3" name="appoinment['type']" class="custom-select patient" required>
+									  <select id="typeselection" name="type" class="custom-select patient" required disabled>
 										<option>Select Type *</option>
-										<option value="new">New Patient</option>
-										<option value="old">Returning Patient</option>
-										<option value="other">Other</option>
+										<option value="new">Old</option>
+										<option value="old">New</option>
 									</select>
 
 									</div>
-									<div class="form-group mt-3">
-										<label for="exampleInputEmail1">Date <span class="text-danger">*</span></label>
-										<input id="datepicker" type="text" name="date" class="form-control name" placeholder="Select Date" required>
-
-
-									  </div>
 									  <div class="form-group mt-3">
 										<label for="exampleInputEmail1">Name <span class="text-danger">*</span></label>
 										<input type="text" name="name" class="form-control name" placeholder="Enter Your Name *" required>
@@ -93,4 +106,9 @@
 			</div>
 			<!-- END APPOINTMENT PAGE -->
 
+
+
 @endsection
+@push('page-scripts')
+<script src="{{ asset('frontend_assets/js/jquery-ui.js') }}"></script>
+@endpush

@@ -42,7 +42,10 @@ Route::prefix('/admin')->group(function () {
             // ------------------doctors------------------
             Route::resource('doctors',        'DoctorsController');
             // ------------------doctors------------------
+            Route::get('doctordelete/{id}',        'DoctorsController@destroy')->name('deleteDr');
+            // ------------------doctors------------------
             Route::resource('appointment',        'TakeAppoinmentController');
+            Route::get('appointmentdelete/{id}',        'TakeAppoinmentController@destroy')->name('dleteAppoinment');
         });
 
         //------------------------------- Admin Crud -------------------------------

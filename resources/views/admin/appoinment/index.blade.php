@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('title', 'List Slider')
+@section('title', 'Appoinment List')
 
 @push('page-css')
     <link rel="stylesheet" href="{{asset('admin_assets/lte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" />
@@ -15,16 +15,14 @@
 
                 <div class="box-header with-border">
                     <div class="box-header pull-left">
-                        <span class="box-title">Banner list</span>
+                        <span class="box-title">Appoinment list</span>
                     </div>
 
                 	<div class="box-header pull-left">
 	                    <!-- <span class="box-title">All Roles</span> -->
 	                </div>
 
-	                <div class="box-tools pull-right">
-	                    <a href="{{route('appointment.create')}}" class="btn btn-xs btn-success pull-left text-white" title="Add New"><i class="fa fa-plus"></i> <span class="text-capitalize">Add Appointment</span></a>
-	                </div>
+
 	            </div>
 
                 <!-- /.box-header -->
@@ -34,12 +32,15 @@
                         <thead class="bg-purple text-white">
                             <tr>
                                 <th class="serial">#</th>
-                                <th>Photo</th>
-                                <th>Post</th>
-                                <th>Department</th>
                                 <th>Name</th>
-                                <th>Starting Time</th>
-                                <th>Working Days</th>
+                                <th>Type</th>
+                                <th>Phone</th>
+                                <th>date</th>
+                                <th>Doctor Name</th>
+
+
+
+
                                 <th class="action">Action</th>
                             </tr>
                         </thead>
@@ -50,34 +51,31 @@
 
                             <tr>
                                 <td>{{ $loop -> index+1 }}</td>
-                                <td><img style="height: 50px; width:50px;" src="{{ asset('storage/'.$doctor->photo) }}" alt=""></td>
-                                <td>{{$doctor->designation}}</td>
-                                <td>{{$doctor->department->name}}</td>
+
                                 <td>{{$doctor->name}}</td>
-                                <td>{{$doctor->time }}</td>
-                                @php
-                                    $days = json_decode($doctor ->working_days);
-                                @endphp
-                                <td>
-                                    @foreach ($days  as $item)
+                                <td>{{$doctor->type}}</td>
 
-                                    {{ $item }} |
-                                    @endforeach
-                                </td>
+                                <td>{{$doctor->phone}}</td>
+                                <td>{{$doctor->date}}</td>
+
+                                <td>{{$doctor->drName}}</td>
+
+
 
                                 <td>
 
-                                	<a href="{{route('doctors.show', $doctor->id)}}" class="btn btn-xs btn-success action-view" title="View"><i class="fa fa-eye"></i></a>
+                                	<a href="{{route('appointment.show', $doctor->id)}}" class="btn btn-xs btn-success action-view" title="View"><i class="fa fa-eye"></i></a>
 
-                                	<a href="{{route('doctors.edit', $doctor->id)}}" class="btn btn-xs btn-primary action-pencil" title="Edit"><i class="fa fa-pencil"></i></a>
+                                	<a href="{{route('appointment.edit', $doctor->id)}}" class="btn btn-xs btn-primary action-pencil" title="Edit"><i class="fa fa-pencil"></i></a>
+                                	<a href="{{route('dleteAppoinment', $doctor->id)}}" class="btn btn-xs btn-danger" title="Edit"><i class="fa fa-pencil"></i></a>
 
-                                	<form action="{{route('doctors.destroy', $doctor->id)}}" method="POST">
+                                	{{-- <form action="{{route('appointment.destroy', $doctor->id)}}" method="POST">
 									    @csrf
 									    @method('DELETE')
 									    <button class="btn btn-xs btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete this item?');">
 									    	<i class="fa fa-trash"></i>
 									    </button>
-									</form>
+									</form> --}}
                                 </td>
                             </tr>
 

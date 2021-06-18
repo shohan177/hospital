@@ -166,9 +166,11 @@
 								<h3 class="h3-md steelblue-color">Complete Medical Solutions in One Place</h3>
 
 								<!-- Text -->
-								<p>An enim nullam tempor sapien gravida donec pretium ipsum  porta justo integer at  odio
-								   velna vitae auctor integer congue magna purus pretium ligula rutrum luctus ultrice aliquam
-								   a augue suscipit
+								<p>
+                                    একটা ছ াট মুঠ া ধীঠে ধীঠে বড় হয়। ছ াট হাঠেে মুঠ া আঠে আঠে বড় হয়, অনুভুতেে ধাোয়মমোয়, আশা, তবশ্বাস ও আস্থায়। মুঠ াে মুঠ ায় থাঠক নানা েকম গল্প । আে ছসই মুঠ া যতি হাতেঠয়
+                                    যায় অসমঠয়, অকােঠে, অকাঠে। ছসই মুঠ া হােঠে খুুঁজি আতম-আমো-সকঠে ছশষ তবকাঠে। আে এই
+                                    মায়া,মমো ও ভাঠোবাসাে মুঠ াগুঠো হাতেঠয় ছযন না যায় ছসই প্রতেশ্রুতে তনঠয় আমো আত মমো
+                                    ছেশাতেস্ট হাসপাোে। আপনাে এবং আপনাে পতেবাঠেে ছসবায়।
 								</p>
 
 								<!-- Text -->
@@ -369,7 +371,7 @@
 
 			<!-- GALLERY-1
 			============================================= -->
-			<div id="gallery-1" class="gallery-section division">
+			{{-- <div id="gallery-1" class="gallery-section division">
 
 
 				<!-- SECTION TITLE -->
@@ -533,7 +535,8 @@
 				</div>  <!-- END GALLERY IMAGES -->
 
 
-			</div>	 <!-- END GALLERY-1 -->
+			</div>	  --}}
+            <!-- END GALLERY-1 -->
 
 
 
@@ -1470,9 +1473,9 @@
 
 
 
-			<!-- TESTIMONIALS-2
+			<!-- TESTIMONIALS-2bg-lightgrey wide-100 reviews-section division
 			============================================= -->
-			<section id="reviews-2" class="bg-lightgrey wide-100 reviews-section division">
+			{{-- <section id="reviews-2" class="bg-lightgrey wide-100 reviews-section division">
 				<div class="container">
 
 
@@ -1747,14 +1750,15 @@
 
 
 				</div>	   <!-- End container -->
-			</section>	 <!-- END TESTIMONIALS-2 -->
+			</section>	  --}}
+            <!-- END TESTIMONIALS-2 -->
 
 
 
 
 			<!-- BANNER-3
 			============================================= -->
-			<section id="banner-3" class="pt-100 banner-section division">
+			<section id="banner-3" class="pt-100 bg-lightgrey banner-section division">
 				<div class="container">
 					<div class="row d-flex align-items-center">
 

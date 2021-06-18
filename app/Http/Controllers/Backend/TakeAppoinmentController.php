@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Model\TakeAppoinment;
+use App\Model\Serial;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,7 +18,7 @@ class TakeAppoinmentController extends Controller
      */
     public function index(Request $request)
     {
-        $query  = TakeAppoinment::latest();
+        $query  = Serial::latest();
 
         if (!empty($request->field_name) && !empty($request->value)) {
             $query->where($request->field_name, 'like', '%' . $request->value . '%');
@@ -48,31 +49,6 @@ class TakeAppoinmentController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->input('appoinment');
-
-        // dd($data);
-        // $table->string('name');
-        // $table->string('phone');
-        // $table->string('adress');
-        // $table->string('date');
-        // $table->string('type');
-        // $table->string('eamil');
-        // $table->string('note');
-        //dd($data);
-        //$this->validation($request);
-        TakeAppoinment::create([
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'adress' => $request->adress,
-            'date' => $request->date,
-            'type' => 'hello',
-            'eamil' => $request->eamil,
-            'note' => $request->note
-        ]);
-
-        return redirect()->back();
-        // return redirect()->route($this->route . '.index')
-        //     ->with('success', $this->model . ' successfully created');
     }
 
     /**
@@ -123,9 +99,11 @@ class TakeAppoinmentController extends Controller
      * @param  \App\Model\TakeAppoinment  $takeAppoinment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TakeAppoinment $takeAppoinment)
+    public function destroy($id)
     {
-        $takeAppoinment->delete();
+        $data = Serial::find($id);
+        $data->delete();
+
         return redirect()->route($this->route . '.index')
             ->with('success', $this->model . ' deleted');
     }
@@ -134,7 +112,7 @@ class TakeAppoinmentController extends Controller
     {
         $this->path  = "admin.appoinment";
         $this->model = "TakeAppoinment";
-        $this->route = "TakeAppoinment";
+        $this->route = "appointment";
     }
 
     private function validation($request, $takeAppoinment = null)

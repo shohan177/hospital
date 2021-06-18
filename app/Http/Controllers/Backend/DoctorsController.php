@@ -125,9 +125,12 @@ class DoctorsController extends Controller
      * @param  \App\Model\Doctors  $doctors
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctors $doctors)
+    public function destroy($id)
     {
-        $doctors->delete();
+        $data = Doctors::find($id);
+        $data->delete();
+
+        //$doctors->delete();
         return redirect()->route($this->route . '.index')
             ->with('success', $this->model . ' deleted');
     }

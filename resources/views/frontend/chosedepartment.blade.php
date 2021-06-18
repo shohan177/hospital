@@ -29,7 +29,7 @@
 						<!-- SERVICE BOX #2 -->
 						<div class="col-sm-6 col-lg-3">
 							<div class="sbox-2 wow fadeInUp" data-wow-delay="0.6s">
-								<a href="{{ route('appoinmentForm',$valu ->slug) }}">
+								<a href="{{ route('appoinmentForm') }}">
 
 									<!-- Icon  -->
 									<div class="sbox-2-icon icon-xl">

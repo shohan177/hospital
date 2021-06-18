@@ -19,8 +19,12 @@ Route::get('/department/{slug}', 'frontendController@singleDepartment')->name('d
 Route::get('/service/{slug}', 'frontendController@singleService')->name('service');
 Route::get('/doctors', 'frontendController@allDoctors')->name('doctors');
 Route::get('/chosedepartment', 'frontendController@makeAppoinment')->name('appoinment');
-Route::get('/getappoinment/{slug}', 'frontendController@appoinmentForm')->name('appoinmentForm');
+Route::get('/getappoinment', 'frontendController@appoinmentForm')->name('appoinmentForm');
 Route::post('storeAppoinment', 'frontendController@storeSerial')->name('StoreAppoinment');
+Route::get('/drlist/{id}', 'frontendController@drList');
+Route::get('/singledr/{id}', 'frontendController@singleDr');
+Route::get('/dr/profile/{id}', 'frontendController@drProfile')->name('drProfile');
+
 
 
 // Auth::routes();
