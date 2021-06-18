@@ -144,6 +144,20 @@
 
 
                                 @endforeach
+                                <input type="checkbox" id="vehicle1" name="working[]" value="0">
+                                <label for="vehicle1"> SUN </label>
+                                <input type="checkbox" id="vehicle2" name="working[]" value="1">
+                                <label for="vehicle2"> MON </label>
+                                <input type="checkbox" id="vehicle3" name="working[]" value="2">
+                                <label for="vehicle3"> TUE </label>
+                                <input type="checkbox" id="vehicle1" name="working[]" value="3">
+                                <label for="vehicle4"> WED </label>
+                                <input type="checkbox" id="vehicle4" name="working[]" value="4">
+                                <label for="vehicle5"> THU </label>
+                                <input type="checkbox" id="vehicle5" name="working[]" value="5">
+                                <label for="vehicle6"> FRI </label>
+                                <input type="checkbox" id="vehicle6" name="working[]" value="6">
+                                <label for="vehicle7"> SAT </label>
 
 
                             </div>

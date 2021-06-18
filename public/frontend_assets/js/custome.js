@@ -1,21 +1,21 @@
-        function datepicker(){
+        function datepicker(valu){
 
-            let days = ["0","5", "6"]
+            // let days = ["1","2","3"]
 
-            .map((n) => parseInt(n))
-            .filter((n) => !isNaN(n));
+            // .map((n) => parseInt(n))
+            // .filter((n) => !isNaN(n));
 
-            $( function() {
-                $( "#datepicker" ).datepicker({
+
+            $( "#datepicker" ).datepicker({
                     minDate: 1,
                     maxDate: +2,
                     dateFormat: 'dd-mm-yy',
 
-                    beforeShowDay: function(day) {
-                        return [days.includes(day.getDay())];
-                    }
+                    // beforeShowDay: function(day) {
+                    //     return [days.includes(day.getDay())];
+                    // }
                 });
-            } );
+
         }
 
 
@@ -47,7 +47,7 @@
                     $('#datepicker').removeAttr('disabled');
                     $('#typeselection').removeAttr('disabled');
                     $('#drvalu').val(data.name);
-                    datepicker()
+                    datepicker(data.working_days)
 
 
 
