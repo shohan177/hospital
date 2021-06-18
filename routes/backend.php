@@ -41,6 +41,10 @@ Route::prefix('/admin')->group(function () {
             Route::resource('banner',        'BannerController');
             // ------------------doctors------------------
             Route::resource('doctors',        'DoctorsController');
+            // ------------------doctors show------------------
+            Route::get('showdoctors/{id}',        'DoctorsController@show')->name('showdr');
+            // ------------------doctors edit------------------
+            Route::get('editdoctors/{id}',        'DoctorsController@edit')->name('editDoctor');
             // ------------------doctors------------------
             Route::get('doctordelete/{id}',        'DoctorsController@destroy')->name('deleteDr');
             // ------------------doctors------------------

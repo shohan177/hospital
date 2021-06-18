@@ -1,5 +1,28 @@
 @extends('frontend.layouts.app')
 @section('main')
+<!-- BREADCRUMB
+			============================================= -->
+			<div id="breadcrumb" class="division">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class=" breadcrumb-holder">
+
+								<!-- Breadcrumb Nav -->
+								<nav aria-label="breadcrumb">
+								  	<ol class="breadcrumb">
+								    	<li class="breadcrumb-item"><a href="{{ route('mainHome') }}">Home</a></li>
+								    	<li class="breadcrumb-item active" aria-current="page">Appoinment</li>
+								  	</ol>
+								</nav>
+
+
+
+							</div>
+						</div>
+					</div>  <!-- End row -->
+				</div>	<!-- End container -->
+			</div>	<!-- END BREADCRUMB -->
 
 	<!-- APPOINTMENT PAGE
 			============================================= -->
@@ -43,27 +66,47 @@
                                     <div id=''>
                                         <input id="drvalu" type="hidden" name="drName">
                                     </div>
-                                    <div class="form-group mt-3">
-                                        <label for="exampleInputEmail1">Date <span class="text-danger">*</span></label>
-                                        <input id="datepicker" type="text" name="date" class="form-control name" placeholder="Select Date" required disabled>
+
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="form-group mt-3">
+                                                <label for="exampleInputEmail1">Date <span class="text-danger">*</span></label>
+                                                <input id="datepicker" type="text" name="date" class="form-control name" placeholder="Select Date" required disabled>
 
 
-                                      </div>
+                                              </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group mt-3">
+                                                <label for="exampleInputEmail1">Patient Type <span class="text-danger">*</span></label>
+                                                <select id="typeselection" name="type" class="custom-select patient" required disabled>
+                                                  <option>Select Type *</option>
+                                                  <option value="Old">Old</option>
+                                                  <option value="New">New</option>
+                                              </select>
 
-									<div class="form-group mt-3">
-									  <label for="exampleInputEmail1">Patient Type <span class="text-danger">*</span></label>
-									  <select id="typeselection" name="type" class="custom-select patient" required disabled>
-										<option>Select Type *</option>
-										<option value="new">Old</option>
-										<option value="old">New</option>
-									</select>
+                                              </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group mt-3">
+                                                <label for="exampleInputEmail1">Gander<span class="text-danger"> *</span></label>
+                                                <select  name="gander" class="custom-select patient" required >
+                                                    <option>Select gander *</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                              </div>
+                                        </div>
+                                    </div>
 
-									</div>
+
+
 									  <div class="form-group mt-3">
 										<label for="exampleInputEmail1">Name <span class="text-danger">*</span></label>
 										<input type="text" name="name" class="form-control name" placeholder="Enter Your Name *" required>
-
 									  </div>
+
 									  <div class="form-group mt-3">
 										<label for="exampleInputEmail1">Address <span class="text-danger">*</span></label>
 										<input type="text" name="adress" class="form-control" placeholder="Your address *" required>
@@ -74,19 +117,25 @@
 										<input type="tel" name="phone" class="form-control phone" placeholder="Phone Number " required>
 
 									  </div>
+                                      <div class="form-group mt-3">
+										<label for="exampleInputEmail1">UHID <span class="text-success"> (optional)</span></label>
+										<input type="text" name="uhid" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="UHID">
+
+									  </div>
 									  <div class="form-group mt-3">
-										<label for="exampleInputEmail1">Email</label>
+										<label for="exampleInputEmail1">Email <span class="text-success"> (optional)</span></label>
 										<input type="text" name="eamil" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
 
 									  </div>
 									  <div class="form-group mt-3">
-										<label for="exampleInputEmail1">Note</label>
+										<label for="exampleInputEmail1">Note <span class="text-success"> (optional)</span></label>
 										<textarea  class="form-control message" name="note" rows="6" placeholder="Your Message ..."></textarea>
 
 									  </div>
 									  <div class="form-group mt-3">
 
-										<button type="submit" class="btn btn-blue blue-hover submit">Submit</button>
+                                        <a class="btn bg-warning" href="{{ route('appoinmentForm') }}">RESET</a>
+										<button type="submit" class="btn btn-blue blue-hover submit">REQUEST AN APPOINMENT</button>
 
 									  </div>
 

@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
+use function GuzzleHttp\json_decode;
+
     /*use App\Http\Controllers\Controller*/;
 
 class DoctorsController extends Controller
@@ -83,11 +86,13 @@ class DoctorsController extends Controller
      * @param  \App\Model\Doctors  $doctors
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctors $doctors)
+    public function show($id)
     {
-        $breadcumbs = $this->breadcumbs($this->model, 'show');
 
-        return view($this->path . '.show', compact("doctors", "breadcumbs"));
+        $doctors = Doctors::find($id);
+
+
+        return view($this->path . '.show', compact("doctors"));
     }
 
     /**
@@ -96,12 +101,13 @@ class DoctorsController extends Controller
      * @param  \App\Model\Doctors  $doctors
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctors $doctors)
+    public function edit($id)
     {
-        $breadcumbs = $this->breadcumbs($this->model, 'edit');
+        $department = Department::get()->all();
+        $doctors = Doctors::find($id);
         return view(
             $this->path . '.edit',
-            compact("doctors", "breadcumbs")
+            compact("doctors", "department")
         );
     }
 
@@ -114,8 +120,29 @@ class DoctorsController extends Controller
      */
     public function update(Request $request, Doctors $doctors)
     {
-        $this->validation($request, $doctors->id);
-        $doctors->update($request->all());
+        if (!empty($request->file('photo'))) {
+            $photo = Storage::putFile('upload/dr', $request->file('photo'));
+        } else {
+            $photo = $request->old_photo;
+        }
+
+        $data = $request->input('dr');
+
+        $working = $request->input('working');
+        $id = $request->id;
+
+        $doctor = Doctors::find($id);
+
+        $doctor->name = $data['name'];
+        $doctor->designation = $data['designation'];
+        $doctor->working_days = json_encode($working);
+        $doctor->phone = $data['phone'];
+        $doctor->photo = $photo;
+        $doctor->rank = $data['rank'];
+        $doctor->department_id = $data['department_id'];
+        $doctor->description = $data['description'];
+        $doctor->update();
+
         return redirect()->back()->with('success', $this->model . ' Updated Successfully');
     }
 

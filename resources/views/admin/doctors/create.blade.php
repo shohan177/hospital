@@ -48,13 +48,13 @@
                             </div>
                             <div class="form-group">
 
-                                    <input class="form-check-input" type="radio" name="dr[rank]" id="exampleRadios1" value="1" checked>
+                                    <input class="form-check-input" type="radio" name="dr[rank]" id="exampleRadios1" value="1" >
                                     <label class="form-check-label" for="exampleRadios1">
                                         Chief
                                     </label>
 
 
-                                    <input class="form-check-input" type="radio" name="dr[rank]" id="exampleRadios2" value="0">
+                                    <input class="form-check-input" type="radio" name="dr[rank]" id="exampleRadios2" value="0" checked>
                                     <label class="form-check-label" for="exampleRadios2">
                                         Regular
                                     </label>

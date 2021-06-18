@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout')
-@section('title', 'Edit Slider')
+@section('title', 'Edit Doctors')
 
 
 @section('content')
@@ -9,11 +9,11 @@
 
         <div class="box-header with-border">
             <div class="box-header pull-left">
-                <span class="box-title">Edit Banner</span>
+                <span class="box-title">Edit Doctor</span>
             </div>
 
             <div class="box-tools pull-right">
-                <a href="{{route('banner.index')}}" class="btn btn-xs btn-success pull-left text-white" title="Add New"><i class="fa fa-arrow-left"></i> <span class="text-capitalize">back</span></a>
+                <a href="{{route('doctors.index')}}" class="btn btn-xs btn-success pull-left text-white" title="Add New"><i class="fa fa-arrow-left"></i> <span class="text-capitalize">back</span></a>
             </div>
         </div>
 
@@ -22,59 +22,143 @@
             <div class="container">
                 <div class="row">
 
-                    <form method="POST" action="{{route('banner.update',$banner->id)}}" enctype="multipart/form-data">
-
+                    <form method="POST" action="{{route('doctors.update',$doctors->id)}}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
+                        @csrf
+
                         <div class="col-md-6">
-
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input value="{{ $banner ->name }}" type="text" name="banner[name]" placeholder="Home page banner" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label>Button Text</label>
-                                <input value="{{ $banner ->button_text }}" type="text" name="banner[button_text]" placeholder="Read more" class="form-control" />
-
-                            </div>
-                            <div class="form-group">
-                                <label>Button Url</label>
-                                <input value="{{ $banner ->button_url }}" type="text" name="banner[button_url]" placeholder="https://www.google.com/" class="form-control" />
-
-                            </div>
+                            <div class="col-3">
                             <div class="form-group">
                                 <div class="ml-5">
                                     <label>Photo</label><br>
-                                    <label  for="pro_pic1"><img id="up_44" width="200px" height="200px" style="cursor: pointer; border: 2px solid #3C8DBC; padding: 4px;" src="{{ asset('storage/'.$banner->photo) }}" width="150px" alt=""></label>
-                                    <input  name="photo" id="pro_pic1" class="upload_image" code="up_44"  type="file" >
-                                    <input type="hidden" name='old_photo' value="{{ $banner ->photo }}">
+                                    <label  for="pro_pic1"><img id="up_44" width="200px" height="200px" style="cursor: pointer; border: 2px solid #3C8DBC; padding: 4px;" src="{{ asset('storage/'.$doctors->photo) }}" width="150px" alt=""></label>
+                                    <input name="photo" id="pro_pic1"  class="upload_image" code="up_44"  type="file" >
+                                    <input name="old_photo"  value="{{ $doctors->photo }}" type="hidden" >
+                                    <input name="id"  value="{{ $doctors->id }}" class="upload_image"  type="hidden" >
+
                                 </div>
                                 <br>
-
+                            </div>
+                            </div>
+                            <div class="col-3">
 
                             </div>
+
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" value="{{ $doctors->name }}" name="dr[name]" placeholder="name" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                   @if ($doctors->rank == 0)
+                                        <input class="form-check-input" type="radio" name="dr[rank]" id="exampleRadios1" value="1" >
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Chief
+                                        </label>
+
+
+                                        <input class="form-check-input" type="radio" name="dr[rank]" id="exampleRadios2" value="0" checked>
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Regular
+                                        </label>
+
+                                   @else
+                                        <input class="form-check-input" type="radio" name="dr[rank]" id="exampleRadios1" value="1" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Chief
+                                        </label>
+
+
+                                        <input class="form-check-input" type="radio" name="dr[rank]" id="exampleRadios2" value="0" >
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Regular
+                                        </label>
+                                   @endif
+
+                            </div>
+                            <div class="form-group">
+                                <label>Department</label>
+                                <select name="dr[department_id]" class="custom-select mr-sm-2 form-control" id="inlineFormCustomSelect">
+                                    <option value="null" selected>select positaion...</option>
+                                    @foreach ($department as $valu)
+                                    @if ($valu->id == $doctors->department_id)
+                                        <option value="{{ $valu->id }}" selected>{{ $valu->name }}</option>
+                                    @else
+                                        <option value="{{ $valu->id }}">{{ $valu->name }}</option>
+                                    @endif
+
+                                    @endforeach
+                                  </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Designation</label>
+                                <input value="{{ $doctors->designation }}" type="text" name="dr[designation]" placeholder="Designation" class="form-control" />
+                            </div>
+
 
 
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Banner Positaion</label>
-                                <select name="banner[positaion]" class="custom-select mr-sm-2 form-control" id="inlineFormCustomSelect">
-                                    <option value="{{ $banner ->positaion }}" selected>{{ $banner ->positaion }}</option>
-                                    <option value="home page">Home page</option>
-                                    <option value="Dr page">Dr page</option>
-                                    <option value="Service Page">Service Page</option>
-                                  </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Title</label>
-                                <input value="{{ $banner ->title }}" type="text" name="banner[title]" placeholder="Covid package" class="form-control" />
+                                <label>Working Day</label><br><br>
+                                @php
+                                    $days = json_decode($doctors->working_days);
+                                    $demedays = '["0","1","2","3","4","5","6"]';
+                                    $alldays =  json_decode($demedays);
+
+
+
+
+
+
+
+
+                                //$unselectedDays = array_diff_key($allDays,$days)
+                                @endphp
+                                @foreach ($days as $day)
+
+
+                                        @if ($day == "0")
+                                            <input type="checkbox" id="vehicle1" name="working[]" value="0" checked>
+                                            <label for="vehicle1"> SUN </label>
+                                        @elseif ($day == "1")
+                                            <input type="checkbox" id="vehicle2" name="working[]" value="1" checked>
+                                            <label for="vehicle2"> MON </label>
+                                        @elseif ($day == "2")
+                                            <input type="checkbox" id="vehicle3" name="working[]" value="2" checked>
+                                            <label for="vehicle3"> TUE </label>
+                                        @elseif ($day == "3")
+                                            <input type="checkbox" id="vehicle1" name="working[]" value="3" checked>
+                                            <label for="vehicle4"> WED </label>
+                                        @elseif ($day == "4")
+                                            <input type="checkbox" id="vehicle4" name="working[]" value="4" checked>
+                                            <label for="vehicle5"> THU </label>
+                                        @elseif ($day == "5")
+                                            <input type="checkbox" id="vehicle5" name="working[]" value="5" checked>
+                                            <label for="vehicle6"> FRI </label>
+                                        @elseif ($day == "6")
+                                            <input type="checkbox" id="vehicle6" name="working[]" value="6" checked>
+                                            <label for="vehicle7"> SAT </label>
+                                        @endif
+
+
+                                @endforeach
+
 
                             </div>
                             <div class="form-group">
+                                <label for="appt">Select a time:</label>
+                                <input value="{{ $doctors->time }}" type="time" id="appt" class="form-control" name="dr[time]">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input value="{{ $doctors->phone }}" type="text" name="dr[phone]" placeholder="+8801878745684" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
                                 <label>Description</label>
-                                <textarea id="ck-editor" name="banner[short_desc]" class="form-control">{{ $banner ->short_desc }}</textarea>
+                                <textarea id="ck-editor" name="dr[description]" class="form-control">{{ $doctors->description }}</textarea>
 
                             </div>
                             <br>
@@ -85,6 +169,8 @@
                             <br>
 
                         </div>
+
+
                     </form>
                 </div>
             </div>

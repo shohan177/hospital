@@ -16,9 +16,11 @@ class frontendController extends Controller
 {
     public function index()
     {
+        $doctors = Doctors::get()->all();
+
 
         $sliders = Slider::get()->all();
-        return view('frontend.index', compact('sliders'));
+        return view('frontend.index', compact('sliders', 'doctors'));
     }
     /**
      * about page
@@ -116,10 +118,12 @@ class frontendController extends Controller
             'type' => $request->type,
             'drName' => $request->drName,
             'eamil' => $request->eamil,
-            'note' => $request->note
+            'note' => $request->note,
+            'uhid' => $request->uhid,
+            'gander' => $request->gander,
         ]);
 
-        return redirect()->back();
+        return redirect()->Route('success');
     }
     /**
      * show single dr for dr profile
@@ -131,5 +135,13 @@ class frontendController extends Controller
         $avilabeDays = json_decode($days);
 
         return view('frontend.Singeldoctor', compact('singleDr', 'avilabeDays'));
+    }
+
+    /**
+     * apoinment succes
+     */
+    public function successMesage()
+    {
+        return view('frontend.success');
     }
 }

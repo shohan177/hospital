@@ -71,11 +71,11 @@
                                             Thu
                                           @elseif ($day == "5")
                                             Fri
-                                          @elseif ($day == "g")
+                                          @elseif ($day == "6")
                                             Sat
                                           @endif
 
-                                            ,
+                                            |
                                           @endforeach
                                       </td>
                                    </tr>

@@ -59,18 +59,37 @@
                                     $days = json_decode($doctor ->working_days);
                                 @endphp
                                 <td>
-                                    @foreach ($days  as $item)
 
-                                    {{ $item }} |
+
+                                    @foreach ($days as $day)
+
+                                    @if ($day == "0")
+                                      Sun
+                                    @elseif ($day == "1")
+                                      Mon
+                                    @elseif ($day == "2")
+                                      Tue
+                                    @elseif ($day == "3")
+                                      We
+                                    @elseif ($day == "4")
+                                      Thu
+                                    @elseif ($day == "5")
+                                      Fri
+                                    @elseif ($day == "6")
+                                      Sat
+                                    @endif
+
+                                    |
                                     @endforeach
+
                                 </td>
 
                                 <td>
 
-                                	<a href="{{route('doctors.show', $doctor->id)}}" class="btn btn-xs btn-success action-view" title="View"><i class="fa fa-eye"></i></a>
+                                	<a href="{{route('showdr', $doctor->id)}}" class="btn btn-xs btn-success action-view" title="View"><i class="fa fa-eye"></i></a>
 
-                                	<a href="{{route('doctors.edit', $doctor->id)}}" class="btn btn-xs btn-primary action-pencil" title="Edit"><i class="fa fa-pencil"></i></a>
-                                	<a href="{{route('deleteDr', $doctor->id)}}" class="btn btn-xs btn-danger" title="Edit"><i class="fa fa-pencil"></i></a>
+                                	<a href="{{route('editDoctor', $doctor->id)}}" class="btn btn-xs btn-primary action-pencil" title="Edit"><i class="fa fa-pencil"></i></a>
+                                	<a href="{{route('deleteDr', $doctor->id)}}" class="btn btn-xs btn-danger" title="Edit"><i class="fa fa-trash"></i></a>
 
                                 	{{-- <form action="{{route('doctors.destroy', $doctor->id)}}" method="POST">
 									    @csrf

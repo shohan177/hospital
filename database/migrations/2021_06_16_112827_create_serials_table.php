@@ -20,9 +20,11 @@ class CreateSerialsTable extends Migration
             $table->string('drName');
             $table->string('adress');
             $table->string('date');
-            $table->string('type');
-            $table->string('eamil');
-            $table->string('note');
+            $table->string('type')->nullable();
+            $table->string('gander')->nullable();
+            $table->string('eamil')->nullable();
+            $table->string('note')->nullable();
+            $table->string('uhid')->nullable();
             $table->timestamps();
         });
     }

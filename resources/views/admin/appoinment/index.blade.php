@@ -33,8 +33,10 @@
                             <tr>
                                 <th class="serial">#</th>
                                 <th>Name</th>
+                                <th>Gander</th>
                                 <th>Type</th>
                                 <th>Phone</th>
+                                <th>UHID</th>
                                 <th>date</th>
                                 <th>Doctor Name</th>
 
@@ -53,9 +55,11 @@
                                 <td>{{ $loop -> index+1 }}</td>
 
                                 <td>{{$doctor->name}}</td>
+                                <td>{{$doctor->gander}}</td>
                                 <td>{{$doctor->type}}</td>
 
                                 <td>{{$doctor->phone}}</td>
+                                <td>{{$doctor->uhid}}</td>
                                 <td>{{$doctor->date}}</td>
 
                                 <td>{{$doctor->drName}}</td>
@@ -64,10 +68,10 @@
 
                                 <td>
 
-                                	<a href="{{route('appointment.show', $doctor->id)}}" class="btn btn-xs btn-success action-view" title="View"><i class="fa fa-eye"></i></a>
+                                	{{-- <a href="{{route('appointment.show', $doctor->id)}}" class="btn btn-xs btn-success action-view" title="View"><i class="fa fa-eye"></i></a> --}}
 
-                                	<a href="{{route('appointment.edit', $doctor->id)}}" class="btn btn-xs btn-primary action-pencil" title="Edit"><i class="fa fa-pencil"></i></a>
-                                	<a href="{{route('dleteAppoinment', $doctor->id)}}" class="btn btn-xs btn-danger" title="Edit"><i class="fa fa-pencil"></i></a>
+
+                                	<a href="{{route('dleteAppoinment', $doctor->id)}}" class="btn btn-xs btn-danger" title="Edit"><i class="fa fa-trash"></i></a>
 
                                 	{{-- <form action="{{route('appointment.destroy', $doctor->id)}}" method="POST">
 									    @csrf

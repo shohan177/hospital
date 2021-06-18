@@ -87,39 +87,45 @@
 				 		<!-- SIDEBAR  -->
 						<aside id="sidebar" class="col-lg-4">
 
+                            @foreach (($department->doctors) as $val)
+                                @if ($val->rank == 1)
 
-							<!-- TEXT WIDGET -->
-							<div id="txt-widget" class="sidebar-div mb-50">
+                                <!-- TEXT WIDGET -->
+                                <div id="txt-widget" class="sidebar-div mb-50">
 
-								<!-- Title -->
-								<h5 class="h5-sm steelblue-color">The Heart Of Clinic</h5>
+                                    <!-- Title -->
+                                    <h5 class="h5-sm steelblue-color">{{ $val->designation }}</h5>
 
-								<!-- Head of Clinic -->
-								<div class="txt-widget-unit mb-15 clearfix d-flex align-items-center">
+                                    <!-- Head of Clinic -->
+                                    <div class="txt-widget-unit mb-15 clearfix d-flex align-items-center">
 
-									<!-- Avatar -->
-									<div class="txt-widget-avatar">
-										<img src="{{ asset('frontend_assets/images/head-of-clinic.jpg') }}" alt="testimonial-avatar">
-									</div>
+                                        <!-- Avatar -->
+                                        <div class="txt-widget-avatar">
+                                            <img src="{{ asset('storage/'.$val->photo) }}" alt="testimonial-avatar">
+                                        </div>
 
-									<!-- Data -->
-									<div class="txt-widget-data">
-										<h5 class="h5-md steelblue-color">Dr. Jonathan Barnes</h5>
-										<span>Chief Medical Officer, Founder</span>
-										<p class="blue-color">1-800-1234-567</p>
-									</div>
+                                        <!-- Data -->
+                                        <div class="txt-widget-data">
+                                            <h5 class="h5-md steelblue-color">{{ $val->name }}</h5>
+                                            <span>{{ $val->designation }}</span>
+                                            <p class="blue-color">{{ $val->phone }}</p>
+                                        </div>
 
-								</div>	<!-- End Head of Clinic -->
+                                    </div>	<!-- End Head of Clinic -->
 
-								<!-- Text -->
-								<p class="p-sm">An enim nullam tempor sapien at gravida donec pretium ipsum porta justo
-								   integer at odiovelna vitae auctor integer congue magna purus
-								</p>
+                                    <!-- Text -->
+                                    <p class="p-sm">
+                                        {!! Str::limit($val->description,200) !!}
+                                    </p>
 
-								<!-- Button -->
-								<a href="about.html" class="btn btn-blue blue-hover">Learn More</a>
+                                    <!-- Button -->
+                                    <a href="{{ route('drProfile',$val->id) }}" class="btn btn-blue blue-hover">Learn More</a>
 
-							</div>	<!-- END TEXT WIDGET -->
+                                </div>
+                                <!-- END TEXT WIDGET -->
+                                @endif
+
+                            @endforeach
 
 
 							<!-- SIDEBAR TABLE -->
@@ -168,29 +174,7 @@
 							</div>	<!-- END SIDEBAR TABLE -->
 
 
-							<!-- SIDEBAR TIMETABLE -->
-							<div class="sidebar-timetable sidebar-div mb-50">
 
-								<!-- Title -->
-								<h5 class="h5-md mb-20">Doctors Timetable</h5>
-
-								<!-- Text -->
-								<p class="p-sm">Porta semper lacus cursus, feugiat primis ultrice ligula risus auctor at
-								   tempus feugiat dolor lacinia cursus nulla vitae massa
-								</p>
-
-								<!-- Button -->
-								<a href="about.html" class="btn btn-blue blue-hover mt-10">View Timetable</a>
-
-							</div>	<!-- END SIDEBAR TABLE -->
-
-
-							<!-- IMAGE WIDGET -->
-							<div id="image-widget" class="sidebar-div">
-								<a href="#">
-									<img class="img-fluid" src="{{ asset('frontend_assets/images/blog/image-widget.jpg') }}" alt="image-widget" />
-								</a>
-							</div>
 
 
 						</aside>   <!-- END SIDEBAR -->
@@ -214,7 +198,7 @@
 						<div class="col-lg-10 offset-lg-1 section-title">
 
 							<!-- Title 	-->
-							<h3 class="h3-md steelblue-color">Our Medical Specialists</h3>
+							<h3 class="h3-md steelblue-color">Our {{ $department ->name  }} Specialists</h3>
 
 							<!-- Text -->
 							<p>Aliquam a augue suscipit, luctus neque purus ipsum neque dolor primis libero at tempus,
@@ -227,6 +211,7 @@
 
 					<div class="row">
 
+                        @foreach (($department->doctors) as $val)
 
 						<!-- DOCTOR #1 -->
 						<div class="col-md-6 col-lg-3">
@@ -236,12 +221,12 @@
 								<div class="hover-overlay text-center">
 
 									<!-- Photo -->
-									<img class="img-fluid" src="{{ asset('frontend_assets/images/doctor-1.jpg') }}" alt="doctor-foto">
+									<img style="height: 250px;" class="img-fluid" src="{{ asset('storage/'.$val->photo) }}" alt="doctor-foto">
 									<div class="item-overlay"></div>
 
 									<!-- Profile Link -->
 									<div class="profile-link">
-										<a class="btn btn-sm btn-tra-white black-hover" href="doctor-1.html" title="">View More Info</a>
+										<a class="btn btn-sm btn-tra-white black-hover" href="{{ route('drProfile',$val->id) }}" title="">View More Info</a>
 									</div>
 
 								</div>
@@ -249,119 +234,17 @@
 								<!-- Doctor Meta -->
 								<div class="doctor-meta">
 
-									<h5 class="h5-sm steelblue-color">Jonathan Barnes D.M.</h5>
-									<span class="blue-color">Cardiology</span>
-
-									<p class="p-sm grey-color">Donec vel sapien augue integer turpis cursus porta, mauris sed
-									   augue luctus magna dolor luctus ipsum neque
-									</p>
+									<h5 class="h5-sm steelblue-color">{{ $val->name }}</h5>
+									<span class="blue-color">{{ $val->designation }}</span>
 
 								</div>
 
 							</div>
-						</div>	<!-- END DOCTOR #1 -->
+						</div>
+                        <!-- END DOCTOR #1 -->
+                        @endforeach
 
 
-						<!-- DOCTOR #2 -->
-						<div class="col-md-6 col-lg-3">
-							<div class="doctor-1">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay text-center">
-
-									<!-- Photo -->
-									<img class="img-fluid" src="{{ asset('frontend_assets/images/doctor-2.jpg') }}" alt="doctor-foto">
-									<div class="item-overlay"></div>
-
-									<!-- Profile Link -->
-									<div class="profile-link">
-										<a class="btn btn-sm btn-tra-white black-hover" href="doctor-2.html" title="">View More Info</a>
-									</div>
-
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-sm steelblue-color">Hannah Harper D.M.</h5>
-									<span class="blue-color">Cardiology</span>
-
-									<p class="p-sm grey-color">Donec vel sapien augue integer turpis cursus porta, mauris sed
-									   augue luctus magna dolor luctus ipsum neque
-									</p>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #2 -->
-
-
-						<!-- DOCTOR #3 -->
-						<div class="col-md-6 col-lg-3">
-							<div class="doctor-1">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay text-center">
-
-									<!-- Photo -->
-									<img class="img-fluid" src="{{ asset('frontend_assets/images/doctor-3.jpg') }}" alt="doctor-foto">
-									<div class="item-overlay"></div>
-
-									<!-- Profile Link -->
-									<div class="profile-link">
-										<a class="btn btn-sm btn-tra-white black-hover" href="doctor-1.html" title="">View More Info</a>
-									</div>
-
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-sm steelblue-color">Matthew Anderson D.M.</h5>
-									<span class="blue-color">Anesthesiologist</span>
-
-									<p class="p-sm grey-color">Donec vel sapien augue integer turpis cursus porta, mauris sed
-									   augue luctus magna dolor luctus ipsum neque
-									</p>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #3 -->
-
-
-						<!-- DOCTOR #4 -->
-						<div class="col-md-6 col-lg-3">
-							<div class="doctor-1">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay text-center">
-
-									<!-- Photo -->
-									<img class="img-fluid" src="{{ asset('frontend_assets/images/doctor-4.jpg') }}" alt="doctor-foto">
-									<div class="item-overlay"></div>
-
-									<!-- Profile Link -->
-									<div class="profile-link">
-										<a class="btn btn-sm btn-tra-white black-hover" href="doctor-2.html" title="">View More Info</a>
-									</div>
-
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-sm steelblue-color">Megan Coleman D.M.</h5>
-									<span class="blue-color">Nurse</span>
-
-									<p class="p-sm grey-color">Donec vel sapien augue integer turpis cursus porta, mauris sed
-									   augue luctus magna dolor luctus ipsum neque
-									</p>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #4 -->
 
 
 					</div>	    <!-- End row -->
@@ -371,7 +254,7 @@
 					<div class="row">
 						<div class="col-md-12 text-center">
 							<div class="all-doctors mb-40">
-								<a href="all-doctors.html" class="btn btn-blue blue-hover">Meet All Doctors</a>
+								<a href="{{ route('doctors') }}" class="btn btn-blue blue-hover">Meet All Doctors</a>
 							</div>
 						</div>
 					</div>

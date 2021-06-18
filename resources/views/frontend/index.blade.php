@@ -233,7 +233,7 @@
 								<span class="flaticon-137-doctor"></span>
 
 								<!-- Text -->
-								<h5 class="statistic-number"><span class="count-element">178</span></h5>
+								<h5 class="statistic-number"><span class="count-element">{{ count($doctors) }}</span></h5>
 								<p class="txt-400">Qualified Doctors</p>
 
 							</div>
@@ -1317,141 +1317,49 @@
 
 					<div class="row">
 
+                        @foreach ($doctors as $dr)
+                            @if ( $dr ->rank == 1)
 
-						<!-- DOCTOR #1 -->
-						<div class="col-md-6 col-lg-3">
-							<div class="doctor-1">
+                            <!-- DOCTOR #2 -->
+                            <div class="col-md-6 col-lg-3">
+                                <div class="doctor-1">
 
-								<!-- Doctor Photo -->
-								<div class="hover-overlay text-center">
+                                    <!-- Doctor Photo -->
+                                    <div class="hover-overlay text-center">
 
-									<!-- Photo -->
-									<img class="img-fluid" src="frontend_assets/images/doctor-1.jpg" alt="doctor-foto">
-									<div class="item-overlay"></div>
+                                        <!-- Photo -->
+                                        <img style="height: 256px;" class="img-fluid" src="{{ asset('storage/'.$dr->photo) }}" alt="doctor-foto">
+                                        <div class="item-overlay"></div>
 
-									<!-- Profile Link -->
-									<div class="profile-link">
-										<a class="btn btn-sm btn-tra-white black-hover" href="doctor-1.html" title="">View More Info</a>
-									</div>
+                                        <!-- Profile Link -->
+                                        <div class="profile-link">
+                                            <a class="btn btn-sm btn-tra-white black-hover" href="{{ route('drProfile',$dr->id) }}" title="">View More Info</a>
+                                        </div>
 
-								</div>
+                                    </div>
 
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
+                                    <!-- Doctor Meta -->
+                                    <div class="doctor-meta">
 
-									<h5 class="h5-sm steelblue-color">Jonathan Barnes D.M.</h5>
-									<span class="blue-color">Chief Medical Officer</span>
+                                        <h5 class="h5-sm steelblue-color">{{ $dr->name }}</h5>
+                                        <span class="blue-color">{{ $dr->designation }}</span>
 
-									<p class="p-sm grey-color">Donec vel sapien augue integer turpis cursus porta, mauris sed
-									   augue luctus magna dolor luctus ipsum neque
-									</p>
+                                        <p class="p-sm grey-color">
+                                            {!! Str::limit($dr->description,100) !!}
+                                        </p>
 
-								</div>
+                                    </div>
 
-							</div>
-						</div>	<!-- END DOCTOR #1 -->
-
-
-						<!-- DOCTOR #2 -->
-						<div class="col-md-6 col-lg-3">
-							<div class="doctor-1">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay text-center">
-
-									<!-- Photo -->
-									<img class="img-fluid" src="frontend_assets/images/doctor-2.jpg" alt="doctor-foto">
-									<div class="item-overlay"></div>
-
-									<!-- Profile Link -->
-									<div class="profile-link">
-										<a class="btn btn-sm btn-tra-white black-hover" href="doctor-2.html" title="">View More Info</a>
-									</div>
-
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-sm steelblue-color">Hannah Harper D.M.</h5>
-									<span class="blue-color">Anesthesiologist</span>
-
-									<p class="p-sm grey-color">Donec vel sapien augue integer turpis cursus porta, mauris sed
-									   augue luctus magna dolor luctus ipsum neque
-									</p>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #2 -->
+                                </div>
+                            </div>
+                            <!-- END DOCTOR #2 -->
+                            @endif
+                        @endforeach
 
 
-						<!-- DOCTOR #3 -->
-						<div class="col-md-6 col-lg-3">
-							<div class="doctor-1">
-
-								<!-- Doctor Photo -->
-								<div class="hover-overlay text-center">
-
-									<!-- Photo -->
-									<img class="img-fluid" src="frontend_assets/images/doctor-3.jpg" alt="doctor-foto">
-									<div class="item-overlay"></div>
-
-									<!-- Profile Link -->
-									<div class="profile-link">
-										<a class="btn btn-sm btn-tra-white black-hover" href="doctor-1.html" title="">View More Info</a>
-									</div>
-
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-sm steelblue-color">Matthew Anderson D.M.</h5>
-									<span class="blue-color">Cardiology</span>
-
-									<p class="p-sm grey-color">Donec vel sapien augue integer turpis cursus porta, mauris sed
-									   augue luctus magna dolor luctus ipsum neque
-									</p>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #3 -->
 
 
-						<!-- DOCTOR #4 -->
-						<div class="col-md-6 col-lg-3">
-							<div class="doctor-1">
 
-								<!-- Doctor Photo -->
-								<div class="hover-overlay text-center">
-
-									<!-- Photo -->
-									<img class="img-fluid" src="frontend_assets/images/doctor-4.jpg" alt="doctor-foto">
-									<div class="item-overlay"></div>
-
-									<!-- Profile Link -->
-									<div class="profile-link">
-										<a class="btn btn-sm btn-tra-white black-hover" href="doctor-2.html" title="">View More Info</a>
-									</div>
-
-								</div>
-
-								<!-- Doctor Meta -->
-								<div class="doctor-meta">
-
-									<h5 class="h5-sm steelblue-color">Megan Coleman D.M.</h5>
-									<span class="blue-color">Neurosurgeon</span>
-
-									<p class="p-sm grey-color">Donec vel sapien augue integer turpis cursus porta, mauris sed
-									   augue luctus magna dolor luctus ipsum neque
-									</p>
-
-								</div>
-
-							</div>
-						</div>	<!-- END DOCTOR #4 -->
 
 
 					</div>	    <!-- End row -->
@@ -1461,7 +1369,7 @@
 					<div class="row">
 						<div class="col-md-12 text-center">
 							<div class="all-doctors mb-40">
-								<a href="all-doctors.html" class="btn btn-blue blue-hover">Meet All Doctors</a>
+								<a href="{{ route('doctors') }}" class="btn btn-blue blue-hover">Meet All Doctors</a>
 							</div>
 						</div>
 					</div>

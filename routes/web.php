@@ -24,6 +24,7 @@ Route::post('storeAppoinment', 'frontendController@storeSerial')->name('StoreApp
 Route::get('/drlist/{id}', 'frontendController@drList');
 Route::get('/singledr/{id}', 'frontendController@singleDr');
 Route::get('/dr/profile/{id}', 'frontendController@drProfile')->name('drProfile');
+Route::get('success', 'frontendController@successMesage')->name('success');
 
 
 
