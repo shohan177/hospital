@@ -110,20 +110,33 @@ class frontendController extends Controller
     {
 
 
-        Serial::create([
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'adress' => $request->adress,
-            'date' => $request->date,
-            'type' => $request->type,
-            'drName' => $request->drName,
-            'eamil' => $request->eamil,
-            'note' => $request->note,
-            'uhid' => $request->uhid,
-            'gander' => $request->gander,
-        ]);
+        $year = (now()->year) - ($request->year);
+        $month = (now()->month) - ($request->month);
 
-        return redirect()->Route('success');
+
+        $userDate = $year . ' Year ,' . $month . ' Month';
+
+
+        if ($request->spam_check == '11') {
+            Serial::create([
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'adress' => $request->adress,
+                'date' => $request->date,
+                'type' => $request->type,
+                'drName' => $request->drName,
+                'eamil' => $request->eamil,
+                'note' => $request->note,
+                'uhid' => $request->uhid,
+                'gander' => $request->gander,
+                'birthyear' => $userDate,
+            ]);
+
+            return redirect()->Route('success');
+        } else {
+
+            return back()->with('error', 'Please calculate this equation');
+        }
     }
     /**
      * show single dr for dr profile

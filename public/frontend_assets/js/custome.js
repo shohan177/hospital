@@ -8,7 +8,7 @@
 
             $( "#datepicker" ).datepicker({
                     minDate: 1,
-                    maxDate: +2,
+                    maxDate: +3,
                     dateFormat: 'dd-mm-yy',
 
                     // beforeShowDay: function(day) {

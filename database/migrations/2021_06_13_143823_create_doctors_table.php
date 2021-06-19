@@ -17,9 +17,9 @@ class CreateDoctorsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('photo');
-            $table->string('degree')-> nullable();
+            $table->string('degree')->nullable();
             $table->string('designation');
-            $table->longText('expertise')-> nullable();
+            $table->longText('expertise')->nullable();
             $table->longText('working_days');
             $table->string('time');
             $table->string('phone');

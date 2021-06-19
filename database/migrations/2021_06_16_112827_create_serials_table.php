@@ -20,6 +20,7 @@ class CreateSerialsTable extends Migration
             $table->string('drName');
             $table->string('adress');
             $table->string('date');
+            $table->string('birthyear');
             $table->string('type')->nullable();
             $table->string('gander')->nullable();
             $table->string('eamil')->nullable();

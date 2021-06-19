@@ -34,9 +34,10 @@
                                 <th class="serial">#</th>
                                 <th>Name</th>
                                 <th>Gander</th>
+                                <th>age</th>
                                 <th>Type</th>
                                 <th>Phone</th>
-                                <th>UHID</th>
+
                                 <th>date</th>
                                 <th>Doctor Name</th>
 
@@ -56,10 +57,14 @@
 
                                 <td>{{$doctor->name}}</td>
                                 <td>{{$doctor->gander}}</td>
+
+
+                                <td>{{$doctor->birthyear}}</td>
+
                                 <td>{{$doctor->type}}</td>
 
                                 <td>{{$doctor->phone}}</td>
-                                <td>{{$doctor->uhid}}</td>
+
                                 <td>{{$doctor->date}}</td>
 
                                 <td>{{$doctor->drName}}</td>
